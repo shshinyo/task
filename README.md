@@ -9,8 +9,9 @@ Requirements for application :
 
 to run application successfully follow these steps ;                                                                                                                               
    1- clone repository .                                                                                                                                                           
-   2- run the following command :-  
-   npm install                                                                                                                                                                     
+   2- run the following two commands :-  
+   npm install                                                                                                                                                                    
+   npm start                                                                                                                                                                     
    3- to run test cases run this command : -                                                                                                                                        
    npm test
 -----------------------------------
