@@ -1,16 +1,17 @@
  API for an application to manage working tasks.
 
 
-Requirements for application :
-   1- nodejs environment .
+Requirements for application :                                                                                                                                                      
+   1- nodejs environment .                                                                                                                                                         
    2- mysql database .
+   
 ----------------------------------
 
-to run application successfully follow these steps ;
-   1- clone repository .
+to run application successfully follow these steps ;                                                                                                                               
+   1- clone repository .                                                                                                                                                           
    2- run the following command :-  
-   npm install
-   3- to run test cases run this command : -  
+   npm install                                                                                                                                                                     
+   3- to run test cases run this command : -                                                                                                                                        
    npm test
 -----------------------------------
 
