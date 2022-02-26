@@ -1,0 +1,56 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "assigned_to": 1,
+            "created_by": 1,
+            "description": "task description num 1",
+            "title": "first_task",
+            "created_at": "2022-02-26 19:23:14",
+            "Status": "toDo"
+        },
+        {
+            "id": 2,
+            "assigned_to": 2,
+            "created_by": 2,
+            "description": "task description num 2",
+            "title": "task_2",
+            "created_at": "2022-02-26 19:23:14",
+            "Status": "toDo"
+        },
+        {
+            "id": 3,
+            "assigned_to": 3,
+            "created_by": 3,
+            "description": "task description num 3",
+            "title": "task_3",
+            "created_at": "2022-02-26 19:23:14",
+            "Status": "toDo"
+        },
+        {
+            "id": 4,
+            "assigned_to": 4,
+            "created_by": 4,
+            "description": "task description num 4",
+            "title": "task_4",
+            "created_at": "2022-02-26 19:23:14",
+            "Status": "toDo"
+        },
+        {
+            "id": 5,
+            "assigned_to": 5,
+            "created_by": 5,
+            "description": "task description num 5",
+            "title": "task_5",
+            "created_at": "2022-02-26 19:23:14",
+            "Status": "toDo"
+        }
+ 
+    ],
+    "users":[
+        {"id":1,"name":"Ahmed"},
+        {"id":2,"name":"Ibrahem"},
+        {"id":3,"name":"Rehab"}
+
+    ]
+}

@@ -1,0 +1,306 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server Task APIS Docs.",
+        "version": "1.0.6",
+        "title": "Swagger Tasks"
+    
+    },
+    "tags": [
+        {
+            "name": "Task",
+            "description": "Everything about your Tasks"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/API/task/createTask": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "description": "add new task",
+                "parameters": [
+                    
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "task object that needs to be added to the tasks",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/Task"
+                            }
+                        }
+                    
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "failed operation,rollback"
+                    }
+                }
+            }
+        },
+        "/API/task/updateTaskStatus": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "description": "update task status",
+                "parameters": [
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "task status enum valid values are  : [toDo,InProgress,InQA,Blocked,Done,Deployed]",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/UpdateTaskStatusModel"
+                            }
+                        }
+                    
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "failed operation"
+                    },
+                    "401": {
+                        "description": "unauthrized operation"
+                    }
+                }
+            }
+        },
+        "/API/task/updateTaskOwner": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "description": "update task owner ",
+                "parameters": [
+                    
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "update task object that needs to update task",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/UpdateTaskOwnerModel"
+                            }
+                        }
+                    
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "failed operation"
+                    },
+                    "401": {
+                        "description": "unauthorized operation"
+                    }
+                }
+            }
+        },
+        "/API/task/createTaskAudit": {
+            "post": {
+                "tags": [
+                    "TaskAudit"
+                ],
+                "description": "add new task audit (create, edit status, edit owner)",
+                "parameters": [
+                    
+                        {
+                            "in": "body",
+                            "name": "body",
+                            "description": "task audit object that needs to be added to the task audits",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/TaskAudit"
+                            }
+                        }
+                    
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "failed operation"
+                    }
+                }
+            }
+        },
+        "/API/task/getTaskHistory/{taskId}/{userId}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Finds Task Actions by Id",
+                "description": "Finds all Task Actions by Id",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "required": true,
+                        "type": "number",
+                        "collectionFormat": "multi"
+                    }
+                    ,{
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "type": "number",
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TaskAudit"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    },
+                    "401": {
+                        "description": "unauthorized operation"
+                    }
+                }
+            }
+        }
+
+    },
+
+    "definitions": {
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "Task": {
+            "type": "object",
+            "required": [
+                "title","description","created_by"
+            ],
+            "properties": {
+                "created_by": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "title": {
+                    "type": "string",
+                    "example": "task num 1"
+                },
+                "description": {
+                    "type": "string"
+
+                }
+            }
+        },
+        "TaskAudit": {
+            "type": "object",
+            "required": [
+                "title","description","created_by"
+            ],
+            "properties": {
+                "task_id": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "updated_by": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "type": {
+                    "type": "string",
+                    "example": "task num 1"
+                },
+                "old_status": {
+                    "type": "string"
+                },
+                "new_status": {
+                    "type": "string"
+                },
+                "old_owner": {
+                    "type": "string"
+                },
+                "new_owner": {
+                    "type": "string"
+                }
+            }
+        },
+        "UpdateTaskStatusModel":{
+            "type": "object",
+            "required": [
+                "user_id","task_id","new_status"
+            ],
+            "properties": {
+                "user_id": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "task_id": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "new_status": {
+                    "type": "string",
+                    "example": "Deployed"
+                }
+            }
+        },
+        "UpdateTaskOwnerModel":{
+            "type": "object",
+            "required": [
+                "user_id","task_id","new_owner"
+            ],
+            "properties": {
+                "user_id": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "task_id": {
+                    "type": "integer",
+                    "format": "int",
+                    "example":1
+                },
+                "new_owner": {
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        }
+
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
